@@ -9,11 +9,12 @@ import cn from "classnames";
 import { DualTranscription } from "./components/dt/DualTranscription";
 import LandingPage from "./components/Landing";
 import { LanguageNavigationAssistant } from "./components/ShopingAssistant";
-import { Market } from "./components/community-market/Market"; 
+import { Market } from "./components/community-market/Market";
 import ProductList from "./components/community-market/ProductList";
 import AddProduct from "./components/community-market/AddProduct";
 import ProductDetail from "./components/community-market/ProductDetail";
 import LoginSignup from "./components/community-market/Loginsignup";
+import JoinCommunityPage from "./components/joincommunity";
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
@@ -60,54 +61,61 @@ function App() {
   return (
     <Router>
       <div id="google_translate_element">
+        <div className="App">
+          <LiveAPIProvider url={uri} apiKey={API_KEY}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <BasicLayout>
+                    <LandingPage />
+                  </BasicLayout>
+                }
+              />
 
-      <div className="App">
-        <LiveAPIProvider url={uri} apiKey={API_KEY}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <BasicLayout>
-                  <LandingPage />
-                </BasicLayout>
-              }
-            />
+              <Route
+                path="/health"
+                element={
+                  <MainLayout>
+                    <MedSahayak />
+                  </MainLayout>
+                }
+              />
+              <Route
+                path="/dt"
+                element={
+                  <MainLayout>
+                    <DualTranscription />
+                  </MainLayout>
+                }
+              />
+              <Route
+                path="/sa"
+                element={
+                  <MainLayout>
+                    <LanguageNavigationAssistant />
+                  </MainLayout>
+                }
+              />
+              <Route
+                path="/joincommunity"
+                element={
+                  <BasicLayout>
+                    <JoinCommunityPage />
+                  </BasicLayout>
+                }
+              />
 
-            <Route
-              path="/health"
-              element={
-                <MainLayout>
-                  <MedSahayak />
-                </MainLayout>
-              }
-            />
-            <Route
-              path="/dt"
-              element={
-                <MainLayout>
-                  <DualTranscription />
-                </MainLayout>
-              }
-            />
-            <Route
-              path="/sa"
-              element={
-                <MainLayout>
-                  <LanguageNavigationAssistant />
-                </MainLayout>
-              }
-            />
-
-            {/* Community Market Routes */}
-            <Route path="/market" element={<Market />}>
-              <Route index element={<LoginSignup />} />
-              <Route path="productList" element={<ProductList />} />
-              <Route path="addProduct" element={<AddProduct />} />
-              <Route path="products/:productId" element={<ProductDetail />} />
-            </Route>
-          </Routes>
-        </LiveAPIProvider>
-      </div>
+              {/* Community Market Routes */}
+              <Route path="/market" element={<Market />}>
+                <Route index element={<LoginSignup />} />
+                <Route path="productList" element={<ProductList />} />
+                <Route path="addProduct" element={<AddProduct />} />
+                <Route path="products/:productId" element={<ProductDetail />} />
+              </Route>
+            </Routes>
+          </LiveAPIProvider>
+        </div>
       </div>
     </Router>
   );
