@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-// Define the types for the props
 interface FeatureCardProps {
   title: string;
   description: string;
@@ -69,14 +67,13 @@ const LandingPage = () => {
         iconAlt: "Form Icon",
         path: "/sa",
     }
-];
-
+  ];
 
   return (
     <div className="min-h-screen bg-[#181a1b] font-mono">
       {/* Navigation */}
       <nav className="border-b border-[#444444] bg-[#1c1f21]">
-        <div className="max-w-5xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div 
               className="text-lg font-bold text-[#ff1f7a] cursor-pointer hover:text-[#1f94ff] transition-colors duration-300"
@@ -118,17 +115,21 @@ const LandingPage = () => {
 
       {/* Features Grid */}
       <section className="py-16 px-6 bg-[#181a1b]">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold mb-8 text-white text-center">
             Features
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.slice(0, 3).map((feature, index) => (
               <FeatureCard
                 key={index}
                 {...feature}
               />
             ))}
+            {/* Fourth card with special positioning */}
+            <div className="md:col-span-2 lg:col-span-1 md:mx-auto md:w-full max-w-sm">
+              <FeatureCard {...features[3]} />
+            </div>
           </div>
         </div>
       </section>
@@ -136,7 +137,7 @@ const LandingPage = () => {
       {/* CTA Section */}
       <section className="bg-gradient-to-b from-[#1c1f21] to-[#181a1b] py-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-        <button 
+          <button 
             onClick={() => navigate("/joincommunity")}
             className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
           >
@@ -145,7 +146,6 @@ const LandingPage = () => {
           <p className="text-[#888d8f] mb-8 mt-5">
             Experience the benefits of our digital platform
           </p>
-          
         </div>
       </section>
     </div>
