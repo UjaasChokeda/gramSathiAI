@@ -1,0 +1,11 @@
+{
+    "buyers": [
+      { "username": "buyer1", "password": "pw" },
+      { "username": "buyer2", "password": "pw" }
+    ],
+    "sellers": [
+      { "username": "seller1", "password": "pw" },
+      { "username": "seller2", "password": "pw" }
+    ]
+  }
+  
