@@ -46,24 +46,31 @@ const LandingPage = () => {
   
   const features = [
     {
-      title: "Smart Market",
-      description: "Connect with local sellers and access fresh, locally-sourced products at competitive prices.",
-      iconAlt: "MarketIcon",
-      path: "/market",
+        title: "Community Market",
+        description: "Connect with local sellers and access fresh, locally-sourced products at competitive prices.",
+        iconAlt: "MarketIcon",
+        path: "/market",
     },
     {
-      title: "Health Assistant",
-      description: "Get personalized health insights and recommendations based on your symptoms.",
-      iconAlt: "Health Icon",
-      path: "/health"
+        title: "Doctor bhAI",
+        description: "Get personalized health insights and recommendations based on your symptoms.",
+        iconAlt: "Health Icon",
+        path: "/health",
     },
     {
-      title: "Language Support",
-      description: "Access all features in your preferred language with our seamless translation system.",
-      iconAlt: "Translation Icon",
-      path: "/dt"
+        title: "Language Support",
+        description: "Access all features in your preferred language with our seamless translation system.",
+        iconAlt: "Translation Icon",
+        path: "/dt",
+    },
+    {
+        title: "Form Assistance",
+        description: "Help villagers fill out forms and provide screen-sharing support for better guidance.",
+        iconAlt: "Form Icon",
+        path: "/sa",
     }
-  ];
+];
+
 
   return (
     <div className="min-h-screen bg-[#181a1b] font-mono">
