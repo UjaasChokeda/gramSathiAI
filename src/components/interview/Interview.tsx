@@ -256,7 +256,7 @@ function HealthAssistantComponent() {
 FOLLOW-UP QUESTIONS:
 1. Ask the user for detailed information about their symptoms first.
 2. After receiving the user's input, ask follow-up questions to clarify the symptoms, duration, and intensity.
-3. Based on the user's responses, generate a report that includes possible reasons, remedies, and a recommendation for professional help if necessary.`,
+3. Based on the user's responses, generate a report using function call that  includes possible reasons, remedies, and a recommendation for professional help if necessary.`,
           },
         ],
       },
