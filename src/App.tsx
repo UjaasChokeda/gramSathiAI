@@ -14,7 +14,6 @@ import ProductList from "./components/community-market/ProductList";
 import AddProduct from "./components/community-market/AddProduct";
 import ProductDetail from "./components/community-market/ProductDetail";
 import LoginSignup from "./components/community-market/Loginsignup";
-import JoinCommunityPage from "./components/joincommunity";
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
@@ -60,6 +59,8 @@ const BasicLayout = ({ children }: { children: React.ReactNode }) => {
 function App() {
   return (
     <Router>
+      <div id="google_translate_element">
+
       <div className="App">
         <LiveAPIProvider url={uri} apiKey={API_KEY}>
           <Routes>
@@ -97,11 +98,6 @@ function App() {
               }
             />
 
-            <Route 
-            path="/joincommunity" 
-            element={<JoinCommunityPage />} 
-            />
-
             {/* Community Market Routes */}
             <Route path="/market" element={<Market />}>
               <Route index element={<LoginSignup />} />
@@ -111,6 +107,7 @@ function App() {
             </Route>
           </Routes>
         </LiveAPIProvider>
+      </div>
       </div>
     </Router>
   );

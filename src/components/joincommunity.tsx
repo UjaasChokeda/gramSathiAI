@@ -87,7 +87,7 @@ const JoinCommunityPage: React.FC = () => {
             </a>
 
             
-            <a href='https://www.facebook.com/gramSathiAI' target='_blank' rel='noreferrer'>
+            <a href='https://instagram.com/rollin_sap' target='_blank' rel='noreferrer'>
             <img
             src='https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg'
             alt='instagram'
