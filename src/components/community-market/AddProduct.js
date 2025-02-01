@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
 const ProductForm = () => {
     const prods = JSON.parse(localStorage.getItem('products')) || [];
     const mediaRecorderRef = useRef(null);
@@ -197,133 +196,178 @@ const ProductForm = () => {
     };
 
     return (
-        <div className="container" style={{ width: '70%' }}>
-            <h2>Add Product</h2>
-            <div className="voice-controls mb-4">
-                <button 
-                    type="button" 
-                    className={`btn ${isRecording ? 'btn-danger' : 'btn-success'} me-2`}
-                    onClick={isRecording ? stopRecording : startRecording}
-                >
-                    {isRecording ? 'Stop Recording' : 'Start Recording'}
-                </button>
-                {isRecording && (
-                    <span className="text-danger">Recording in progress...</span>
-                )}
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="productName">Product Name:</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="productName"
-                        value={productName}
-                        onChange={handleProductNameChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea
-                        className="form-control"
-                        id="description"
-                        value={description}
-                        onChange={handleDescriptionChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="price">Price:</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="price"
-                        value={price}
-                        onChange={handlePriceChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="category">Category:</label>
-                    <select
-                        className="form-control"
-                        id="category"
-                        value={category}
-                        onChange={handleCategoryChange}
-                    >
-                        <option value="">Select a category</option>
-                        <option value="tools">Tools</option>
-                        <option value="clothes">Clothing</option>
-                        <option value="sports">Sports</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="sellerName">Seller Name:</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="sellerName"
-                        value={sellerName}
-                        onChange={handleSellerNameChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="contactDetails">Contact Details:</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="contactDetails"
-                        value={contactDetails}
-                        onChange={handleContactDetailsChange}
-                    />
-                </div>
-                <div className="form-group mt-3">
-                    <label>Location:</label>
-                    <div className="row">
-                        <div className="col">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Latitude"
-                                value={latitude}
-                                onChange={handleLatitudeChange}
-                            />
-                        </div>
-                        <div className="col">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Longitude"
-                                value={longitude}
-                                onChange={handleLongitudeChange}
-                            />
-                        </div>
-                        <div className="col-auto">
-                            <button
-                                type="button"
-                                className="btn btn-secondary"
-                                onClick={getCurrentLocation}
-                            >
-                                Get Current Location
-                            </button>
-                        </div>
+        <div className="min-h-screen bg-[#1c1f21] font-['Space_Mono'] text-gray-300 py-12 px-4">
+            <div className="max-w-3xl mx-auto relative">
+                <div className="absolute -top-20 -left-20 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
+
+                <div className="bg-[#232729] p-8 rounded-2xl shadow-2xl border border-[#444444] backdrop-blur-sm relative z-10">
+                    <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-pink-400 to-white text-transparent bg-clip-text">
+                        Add Product
+                    </h2>
+
+                    <div className="mb-8 flex justify-center">
+                        <button 
+                            type="button" 
+                            onClick={isRecording ? stopRecording : startRecording}
+                            className={`px-6 py-3 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] ${
+                                isRecording 
+                                ? 'bg-red-500/80 hover:bg-red-600/80' 
+                                : 'bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700'
+                            }`}
+                        >
+                            {isRecording ? 'Stop Recording' : 'Start Recording'}
+                        </button>
+                        {isRecording && (
+                            <span className="ml-4 text-pink-400">Recording in progress...</span>
+                        )}
                     </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                                Product Name
+                            </label>
+                            <input
+                                type="text"
+                                value={productName}
+                                onChange={handleProductNameChange}
+                                className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                placeholder="Enter product name"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                                Description
+                            </label>
+                            <textarea
+                                value={description}
+                                onChange={handleDescriptionChange}
+                                className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all min-h-[100px]"
+                                placeholder="Enter product description"
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Price
+                                </label>
+                                <input
+                                    type="text"
+                                    value={price}
+                                    onChange={handlePriceChange}
+                                    className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                    placeholder="Enter price"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Category
+                                </label>
+                                <select
+                                    value={category}
+                                    onChange={handleCategoryChange}
+                                    className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                >
+                                    <option value="">Select a category</option>
+                                    <option value="tools">Tools</option>
+                                    <option value="clothes">Clothing</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="furniture">Furniture</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Seller Name
+                                </label>
+                                <input
+                                    type="text"
+                                    value={sellerName}
+                                    onChange={handleSellerNameChange}
+                                    className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                    placeholder="Enter seller name"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Contact Details
+                                </label>
+                                <input
+                                    type="text"
+                                    value={contactDetails}
+                                    onChange={handleContactDetailsChange}
+                                    className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                    placeholder="Enter contact details"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                                Location
+                            </label>
+                            <div className="grid grid-cols-[1fr_1fr_auto] gap-4">
+                                <input
+                                    type="text"
+                                    value={latitude}
+                                    onChange={handleLatitudeChange}
+                                    className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                    placeholder="Latitude"
+                                />
+                                <input
+                                    type="text"
+                                    value={longitude}
+                                    onChange={handleLongitudeChange}
+                                    className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white placeholder-gray-500 transition-all"
+                                    placeholder="Longitude"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={getCurrentLocation}
+                                    className="px-4 py-3 bg-[#2a2f31] border border-[#444444] rounded-lg hover:bg-[#404547] transition-colors text-gray-300"
+                                >
+                                    Get Location
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                                Image
+                            </label>
+                            <input
+                                type="file"
+                                onChange={handleImageChange}
+                                className="w-full px-4 py-3 bg-[#1c1f21] border border-[#444444] rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-pink-500/80 file:text-white hover:file:bg-pink-600/80 transition-all"
+                                accept="image/*"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-lg hover:from-pink-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500/50 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                        >
+                            Add Product
+                        </button>
+                    </form>
                 </div>
-                <div className="form-group mt-3">
-                    <label htmlFor="image">Image:</label>
-                    <input
-                        type="file"
-                        className="form-control-file"
-                        id="image"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary mt-3">
-                    Submit
-                </button>
-            </form>
-            <ToastContainer />
+            </div>
+            <ToastContainer 
+                theme="dark"
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+            />
         </div>
     );
 };
