@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 // Define the types for the props
 interface FeatureCardProps {
   title: string;
@@ -129,7 +130,7 @@ const LandingPage = () => {
       <section className="bg-gradient-to-b from-[#1c1f21] to-[#181a1b] py-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
         <button 
-            onClick={() => navigate('/community')}
+            onClick={() => navigate("/joincommunity")}
             className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
           >
             Join our Community

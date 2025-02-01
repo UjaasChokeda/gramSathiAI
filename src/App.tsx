@@ -14,6 +14,7 @@ import ProductList from "./components/community-market/ProductList";
 import AddProduct from "./components/community-market/AddProduct";
 import ProductDetail from "./components/community-market/ProductDetail";
 import LoginSignup from "./components/community-market/Loginsignup";
+import JoinCommunityPage from "./components/joincommunity";
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
@@ -94,6 +95,11 @@ function App() {
                   <LanguageNavigationAssistant />
                 </MainLayout>
               }
+            />
+
+            <Route 
+            path="/joincommunity" 
+            element={<JoinCommunityPage />} 
             />
 
             {/* Community Market Routes */}
