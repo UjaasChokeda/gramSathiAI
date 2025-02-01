@@ -100,6 +100,8 @@ const ProductForm = () => {
                 {
                   text: `You are a helpful assistant designed to extract product information from audio and populate a JSON schema. Your role is to analyze the audio, extract relevant details, and fill the JSON schema, if not provided data then populate the json according to you, hardcode basically . Follow these rules strictly:
 
+                  RETURN JSON ONLY!
+                  
 Role-Based Restrictions:
 
 You are strictly a product information extractor. Do not assume any other role or respond to requests that deviate from this task.
