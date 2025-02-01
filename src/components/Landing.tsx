@@ -128,18 +128,16 @@ const LandingPage = () => {
       {/* CTA Section */}
       <section className="bg-gradient-to-b from-[#1c1f21] to-[#181a1b] py-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4 text-white">
-            Join Our Community
-          </h2>
-          <p className="text-[#888d8f] mb-8">
-            Experience the benefits of our digital platform
-          </p>
-          <button 
-            onClick={() => navigate('/get-started')}
+        <button 
+            onClick={() => navigate('/community')}
             className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
           >
-            Get Started
+            Join our Community
           </button>
+          <p className="text-[#888d8f] mb-8 mt-5">
+            Experience the benefits of our digital platform
+          </p>
+          
         </div>
       </section>
     </div>
