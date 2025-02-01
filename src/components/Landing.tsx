@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 interface FeatureCardProps {
   title: string;
@@ -44,30 +46,89 @@ const LandingPage = () => {
   
   const features = [
     {
-        title: "Community Market",
-        description: "Connect with local sellers and access fresh, locally-sourced products at competitive prices.",
-        iconAlt: "MarketIcon",
-        path: "/market",
+      title: "Community Market",
+      description: "Connect with local sellers and access fresh, locally-sourced products at competitive prices.",
+      iconAlt: "MarketIcon",
+      path: "/market",
     },
     {
-        title: "Doctor bhAI",
-        description: "Get personalized health insights and recommendations based on your symptoms.",
-        iconAlt: "Health Icon",
-        path: "/health",
+      title: "Doctor bhAI",
+      description: "Get personalized health insights and recommendations based on your symptoms.",
+      iconAlt: "Health Icon",
+      path: "/health",
     },
     {
-        title: "Language Support",
-        description: "Access all features in your preferred language with our seamless translation system.",
-        iconAlt: "Translation Icon",
-        path: "/dt",
+      title: "Language Support",
+      description: "Access all features in your preferred language with our seamless translation system.",
+      iconAlt: "Translation Icon",
+      path: "/dt",
     },
     {
-        title: "Form Assistance",
-        description: "Help villagers fill out forms and provide screen-sharing support for better guidance.",
-        iconAlt: "Form Icon",
-        path: "/sa",
+      title: "Form Assistance",
+      description: "Help villagers fill out forms and provide screen-sharing support for better guidance.",
+      iconAlt: "Form Icon",
+      path: "/sa",
     }
   ];
+
+  const startTour = () => {
+    const driverObj = driver({
+      showProgress: true,
+      steps: [
+        {
+          element: '[data-tour="logo"]',
+          popover: {
+            title: 'Welcome to Rural Care',
+            description: 'Your digital platform for farming success and healthcare management.',
+            side: "bottom",
+            align: 'start'
+          }
+        },
+        {
+          element: '[data-tour="market"]',
+          popover: {
+            title: 'Community Market',
+            description: 'Connect with local sellers and find fresh, locally-sourced products.',
+            side: "bottom"
+          }
+        },
+        {
+          element: '[data-tour="health"]',
+          popover: {
+            title: 'Doctor bhAI',
+            description: 'Get AI-powered health insights and personalized recommendations.',
+            side: "bottom"
+          }
+        },
+        {
+          element: '[data-tour="language"]',
+          popover: {
+            title: 'Language Support',
+            description: 'Use the platform in your preferred language with our translation system.',
+            side: "bottom"
+          }
+        },
+        {
+          element: '[data-tour="forms"]',
+          popover: {
+            title: 'Form Assistance',
+            description: 'Get help filling out forms with screen-sharing support.',
+            side: "bottom"
+          }
+        },
+        {
+          element: '[data-tour="community"]',
+          popover: {
+            title: 'Join Our Community',
+            description: 'Become part of our growing network of rural communities.',
+            side: "top"
+          }
+        }
+      ]
+    });
+
+    driverObj.drive();
+  };
 
   return (
     <div className="min-h-screen bg-[#181a1b] font-mono">
@@ -76,11 +137,12 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div 
+              data-tour="logo"
               className="text-lg font-bold text-[#ff1f7a] cursor-pointer hover:text-[#1f94ff] transition-colors duration-300"
               onClick={() => navigate('/')}>
               Rural Care
             </div>
-            <div className="hidden md:flex gap-8">
+            <div data-tour="navigation" className="hidden md:flex gap-8">
               {features.map((feature, index) => (
                 <button
                   key={index}
@@ -105,7 +167,7 @@ const LandingPage = () => {
             Digital solutions for farming success and healthcare management
           </p>
           <button 
-            onClick={() => navigate('/get-started')}
+            onClick={startTour}
             className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
           >
             Get Started
@@ -120,14 +182,16 @@ const LandingPage = () => {
             Features
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.slice(0, 3).map((feature, index) => (
-              <FeatureCard
-                key={index}
-                {...feature}
-              />
-            ))}
-            {/* Fourth card with special positioning */}
-            <div className="md:col-span-2 lg:col-span-1 md:mx-auto md:w-full max-w-sm">
+            <div data-tour="market">
+              <FeatureCard {...features[0]} />
+            </div>
+            <div data-tour="health">
+              <FeatureCard {...features[1]} />
+            </div>
+            <div data-tour="language">
+              <FeatureCard {...features[2]} />
+            </div>
+            <div data-tour="forms" className="md:col-span-2 lg:col-span-1 md:mx-auto md:w-full max-w-sm">
               <FeatureCard {...features[3]} />
             </div>
           </div>
@@ -138,6 +202,7 @@ const LandingPage = () => {
       <section className="bg-gradient-to-b from-[#1c1f21] to-[#181a1b] py-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <button 
+            data-tour="community"
             onClick={() => navigate("/joincommunity")}
             className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
           >
