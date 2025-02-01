@@ -130,6 +130,33 @@ const LandingPage = () => {
     driverObj.drive();
   };
 
+  // Function to get location and send SOS via WhatsApp
+  const getLocationAndSendSOS = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const message = `Help! I'm at https://www.google.com/maps?q=${latitude},${longitude}`;
+          
+          // List of WhatsApp contacts (replace with actual phone numbers)
+          const contacts = [
+            '8217272894', 
+            '6239066594',
+          ];
+
+          contacts.forEach(contact => {
+            window.open(`https://wa.me/${contact}?text=${encodeURIComponent(message)}`, '_blank');
+          });
+        },
+        (error) => {
+          alert("Unable to retrieve your location.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#181a1b] font-mono">
       {/* Navigation */}
@@ -139,7 +166,7 @@ const LandingPage = () => {
             <div 
               data-tour="logo"
               className="text-lg font-bold text-[#ff1f7a] cursor-pointer hover:text-[#1f94ff] transition-colors duration-300"
-              onClick={() => navigate('/')}>
+              onClick={() => navigate('/')} >
               Rural Care
             </div>
             <div data-tour="navigation" className="hidden md:flex gap-8">
@@ -161,10 +188,10 @@ const LandingPage = () => {
       <section className="py-20 px-6 text-center bg-gradient-to-b from-[#1c1f21] to-[#181a1b]">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Rural Care & Agriculture Assistant
+            Rural Care Gram AI!
           </h1>
           <p className="text-[#888d8f] text-lg mb-8">
-            Digital solutions for farming success and healthcare management
+            Digital solutions for rural area!
           </p>
           <button 
             onClick={startTour}
@@ -172,6 +199,15 @@ const LandingPage = () => {
           >
             Get Started
           </button>
+          <br/>
+          <br/>
+          <button 
+  onClick={getLocationAndSendSOS}
+  className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg text-xl transition-all duration-300 shadow-lg transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500"
+>
+  SOS Help
+</button>
+
         </div>
       </section>
 
