@@ -47,7 +47,7 @@ const LandingPage = () => {
   const features = [
     {
       title: "Community Market",
-      description: "Connect with local sellers and access fresh, locally-sourced products at competitive prices.",
+      description: "Connect with local sellers and access fresh, locally-sourced products.",
       iconAlt: "MarketIcon",
       path: "/market",
     },
