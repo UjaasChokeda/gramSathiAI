@@ -187,10 +187,10 @@ const LandingPage = () => {
       <section className="py-20 px-6 text-center bg-gradient-to-b from-[#1c1f21] to-[#181a1b]">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Rural Care Gram AI!
+            Gram Sathi AI!
           </h1>
           <p className="text-[#888d8f] text-lg mb-8">
-            Digital solutions for rural area!
+            Digital solutions for rural areas by team CharLog!
           </p>
           <button 
             onClick={startTour}
