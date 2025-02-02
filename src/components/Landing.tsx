@@ -295,7 +295,7 @@ const LandingPage = () => {
         <section className="pt-32 px-6 text-center relative">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Gram Sathi AI!
+              Gram Sathi!
             </h1>
             <p className="text-[#e1e2e3] text-lg mb-8">
               Digital solutions for rural areas by team CharLog!
