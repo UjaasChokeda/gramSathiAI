@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
@@ -48,6 +48,19 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "n") {
+        navigate("/lowbandwidthlandwidth"); // Replace with your actual route
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [navigate]);
 
   const features = [
     {
