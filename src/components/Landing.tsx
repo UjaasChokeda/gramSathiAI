@@ -1,7 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+
+// Custom hook for bandwidth detection
+const useBandwidthDetection = (threshold = 1) => {
+  const [isLowBandwidth, setIsLowBandwidth] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkBandwidth = async () => {
+      try {
+        const startTime = performance.now();
+        const response = await fetch('https://www.google.com/favicon.ico');
+        const endTime = performance.now();
+        
+        // Get content length and handle potential null
+        const contentLength = response.headers.get('content-length');
+        const bitsLoaded = contentLength ? parseInt(contentLength) * 8 : 8000; // fallback to 1KB if no content-length
+        
+        const duration = endTime - startTime;
+        const speedMbps = (bitsLoaded / (1024*1024)) / (duration / 1000);
+    
+        if (speedMbps < threshold) {
+          setIsLowBandwidth(true);
+        }
+      } catch (error) {
+        setIsLowBandwidth(true);
+      }
+    };
+
+    // Add connection change listener
+    const handleConnectionChange = () => {
+      const connection = (navigator as any).connection;
+      if (connection) {
+        if (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g' || connection.effectiveType === '3g')  {
+          setIsLowBandwidth(true);
+          navigate('/lowbandwidthlandwidth');
+        }
+      }
+    };
+
+    // Check initial bandwidth
+    checkBandwidth();
+
+    // Set up network status monitoring if available
+    if ((navigator as any).connection) {
+      (navigator as any).connection.addEventListener('change', handleConnectionChange);
+    }
+
+    return () => {
+      if ((navigator as any).connection) {
+        (navigator as any).connection.removeEventListener('change', handleConnectionChange);
+      }
+    };
+  }, [navigate, threshold]);
+
+  return isLowBandwidth;
+};
 
 interface FeatureCardProps {
   title: string;
@@ -48,6 +104,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  // Use the bandwidth detection hook with 1 Mbps threshold
+  const isLowBandwidth = useBandwidthDetection(1);
+
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() === "n") {

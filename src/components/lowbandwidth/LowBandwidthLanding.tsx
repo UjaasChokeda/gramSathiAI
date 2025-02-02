@@ -23,7 +23,7 @@ const LowBandwidthLanding = () => {
 
       <div className="w-full max-w-sm space-y-4">
         <button
-          onClick={() => navigate("/market")}
+          onClick={() => navigate("/market2")}
           className="w-full bg-gray-200 text-black py-2 rounded-md text-lg border border-gray-400"
         >
           Community Market

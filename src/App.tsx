@@ -16,6 +16,11 @@ import ProductDetail from "./components/community-market/ProductDetail";
 import LoginSignup from "./components/community-market/Loginsignup";
 import JoinCommunityPage from "./components/joincommunity";
 import LowBandwidthLanding from "./components/lowbandwidth/LowBandwidthLanding";
+import { Market2 } from "./components/community-market/Market2";
+import LoginSignuptwo from "./components/community-market/Loginsignup2";
+import ProductList2 from "./components/community-market/ProductList2";
+import ProductForm2 from "./components/community-market/AddProduct2";
+import ProductDetail2 from "./components/community-market/ProductDetail2";
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
@@ -120,6 +125,12 @@ function App() {
                 <Route path="productList" element={<ProductList />} />
                 <Route path="addProduct" element={<AddProduct />} />
                 <Route path="products/:productId" element={<ProductDetail />} />
+              </Route>
+              <Route path="/market2" element={<Market2 />}>
+                <Route index element={<LoginSignuptwo />} />
+                <Route path="productList2" element={<ProductList2 />} />
+                <Route path="addProduct2" element={<ProductForm2 />} />
+                <Route path="products2/:productId" element={<ProductDetail2 />} />
               </Route>
             </Routes>
           </LiveAPIProvider>
