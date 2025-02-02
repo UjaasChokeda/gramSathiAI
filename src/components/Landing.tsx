@@ -274,7 +274,7 @@ const LandingPage = () => {
                 className="text-lg font-bold text-[#ff1f7a] cursor-pointer hover:text-[#1f94ff] transition-colors duration-300"
                 onClick={() => navigate("/")}
               >
-                Rural Care
+                GramSathi
               </div>
               <div data-tour="navigation" className="hidden md:flex gap-8">
                 {features.map((feature, index) => (
