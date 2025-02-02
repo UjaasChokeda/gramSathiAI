@@ -58,14 +58,14 @@ const LandingPage = () => {
       path: "/health",
     },
     {
-      title: "Language Support",
-      description: "Access all features in your preferred language with our seamless translation system.",
+      title: "Baat Bandhu",
+      description: "Talk to anyone, anywhere, anytime. Locals or Tourists, we are here to help.",
       iconAlt: "Translation Icon",
       path: "/dt",
     },
     {
-      title: "Form Assistance",
-      description: "Help villagers fill out forms and provide screen-sharing support for better guidance.",
+      title: "Web and Form Assistance",
+      description: "Fill out forms or navigate through web with our AI guidance via screen share.",
       iconAlt: "Form Icon",
       path: "/sa",
     }
@@ -140,8 +140,7 @@ const LandingPage = () => {
           
           // List of WhatsApp contacts (replace with actual phone numbers)
           const contacts = [
-            '8217272894', 
-            '6239066594',
+            '9480801000'
           ];
 
           contacts.forEach(contact => {
