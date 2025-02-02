@@ -159,7 +159,7 @@ const LandingPage = () => {
         {
           element: '[data-tour="logo"]',
           popover: {
-            title: "Welcome to Rural Care",
+            title: "Welcome to Gram Sathi",
             description:
               "Your digital platform for farming success and healthcare management.",
             side: "bottom",
