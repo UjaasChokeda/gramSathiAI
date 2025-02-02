@@ -20,7 +20,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
   return (
     <div
-      className="bg-[#1c1f21] p-6 rounded-lg border border-[#444444] transition-all duration-300 hover:bg-[#232729] cursor-pointer hover:shadow-lg hover:border-[#ff1f7a] group"
+      className="bg-[#1c1f21]/80 backdrop-blur-sm p-6 rounded-lg border border-[#444444] transition-all duration-300 hover:bg-[#232729]/90 cursor-pointer hover:shadow-lg hover:border-[#ff1f7a] group"
       onClick={() => navigate(path)}
       role="button"
       tabIndex={0}
@@ -51,7 +51,7 @@ const LandingPage = () => {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() === "n") {
-        navigate("/lowbandwidthlandwidth"); // Replace with your actual route
+        navigate("/lowbandwidthlandwidth");
       }
     };
 
@@ -166,15 +166,12 @@ const LandingPage = () => {
     driverObj.drive();
   };
 
-  // Function to get location and send SOS via WhatsApp
   const getLocationAndSendSOS = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           const message = `Help! I'm at https://www.google.com/maps?q=${latitude},${longitude}`;
-
-          // List of WhatsApp contacts (replace with actual phone numbers)
           const contacts = ["9480801000"];
 
           contacts.forEach((contact) => {
@@ -194,101 +191,116 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#181a1b] font-mono">
-      {/* Navigation */}
-      <nav className="border-b border-[#444444] bg-[#1c1f21]">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div
-              data-tour="logo"
-              className="text-lg font-bold text-[#ff1f7a] cursor-pointer hover:text-[#1f94ff] transition-colors duration-300"
-              onClick={() => navigate("/")}
-            >
-              Rural Care
-            </div>
-            <div data-tour="navigation" className="hidden md:flex gap-8">
-              {features.map((feature, index) => (
-                <button
-                  key={index}
-                  onClick={() => navigate(feature.path)}
-                  className="text-[#888d8f] hover:text-[#ff1f7a] transition-colors duration-300 text-sm"
-                >
-                  {feature.title}
-                </button>
-              ))}
+    <div
+      className="min-h-screen font-mono relative"
+      style={{
+        backgroundImage: 'url("/bg.gif")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Semi-transparent overlay for entire page */}
+      <div className="absolute inset-0 bg-black/50"></div>
+
+      {/* Content wrapper */}
+      <div className="relative z-10">
+        {/* Navigation - now transparent */}
+        <nav className="border-b border-[#444444]/30 bg-[#1c1f21]/30 backdrop-blur-sm fixed w-full top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex justify-between items-center">
+              <div
+                data-tour="logo"
+                className="text-lg font-bold text-[#ff1f7a] cursor-pointer hover:text-[#1f94ff] transition-colors duration-300"
+                onClick={() => navigate("/")}
+              >
+                Rural Care
+              </div>
+              <div data-tour="navigation" className="hidden md:flex gap-8">
+                {features.map((feature, index) => (
+                  <button
+                    key={index}
+                    onClick={() => navigate(feature.path)}
+                    className="text-[#e1e2e3] hover:text-[#ff1f7a] transition-colors duration-300 text-sm"
+                  >
+                    {feature.title}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {/* Hero Section */}
-      <section className="py-20 px-6 text-center bg-gradient-to-b from-[#1c1f21] to-[#181a1b]">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Gram Sathi AI!
-          </h1>
-          <p className="text-[#888d8f] text-lg mb-8">
-            Digital solutions for rural areas by team CharLog!
-          </p>
-          <button
-            onClick={startTour}
-            className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
-          >
-            Get Started
-          </button>
-          <br />
-          <br />
-          <button
-            data-tour="SOS"
-            onClick={getLocationAndSendSOS}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg text-xl transition-all duration-300 shadow-lg transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500"
-          >
-            SOS Help
-          </button>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-16 px-6 bg-[#181a1b]">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-white text-center">
-            Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div data-tour="market">
-              <FeatureCard {...features[0]} />
-            </div>
-            <div data-tour="health">
-              <FeatureCard {...features[1]} />
-            </div>
-            <div data-tour="language">
-              <FeatureCard {...features[2]} />
-            </div>
-            <div
-              data-tour="forms"
-              className="md:col-span-2 lg:col-span-1 md:mx-auto md:w-full max-w-sm"
+        {/* Hero Section */}
+        <section className="pt-32 px-6 text-center relative">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Gram Sathi AI!
+            </h1>
+            <p className="text-[#e1e2e3] text-lg mb-8">
+              Digital solutions for rural areas by team CharLog!
+            </p>
+            <button
+              onClick={startTour}
+              className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
             >
-              <FeatureCard {...features[3]} />
+              Get Started
+            </button>
+            <br />
+            <br />
+            <button
+              data-tour="SOS"
+              onClick={getLocationAndSendSOS}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-lg text-xl transition-all duration-300 shadow-lg transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500"
+            >
+              SOS Help
+            </button>
+          </div>
+        </section>
+
+        {/* Features Grid - now with transparent cards */}
+        <section className="py-16 px-6">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold mb-8 text-white text-center">
+              Features
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div data-tour="market">
+                <FeatureCard {...features[0]} />
+              </div>
+              <div data-tour="health">
+                <FeatureCard {...features[1]} />
+              </div>
+              <div data-tour="language">
+                <FeatureCard {...features[2]} />
+              </div>
+              <div
+                data-tour="forms"
+                className="md:col-span-2 lg:col-span-1 md:mx-auto md:w-full max-w-sm"
+              >
+                <FeatureCard {...features[3]} />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-b from-[#1c1f21] to-[#181a1b] py-16 px-6 text-center">
-        <div className="max-w-3xl mx-auto">
-          <button
-            data-tour="community"
-            onClick={() => navigate("/joincommunity")}
-            className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
-          >
-            Join our Community
-          </button>
-          <p className="text-[#888d8f] mb-8 mt-5">
-            Experience the benefits of our digital platform
-          </p>
-        </div>
-      </section>
+        {/* CTA Section */}
+        <section className="py-16 px-6 text-center bg-[#1c1f21]/5 backdrop-blur-sm">
+          <div className="max-w-3xl mx-auto">
+            <button
+              data-tour="community"
+              onClick={() => navigate("/joincommunity")}
+              className="bg-gradient-to-r from-[#ff1f7a] to-[#1f94ff] hover:from-[#1f94ff] hover:to-[#ff1f7a] text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-sm"
+            >
+              Join our Community
+            </button>
+            <p className="text-[#e1e2e3] mb-8 mt-5">
+              Experience the benefits of our digital platform
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
