@@ -15,6 +15,7 @@ import AddProduct from "./components/community-market/AddProduct";
 import ProductDetail from "./components/community-market/ProductDetail";
 import LoginSignup from "./components/community-market/Loginsignup";
 import JoinCommunityPage from "./components/joincommunity";
+import LowBandwidthLanding from "./components/lowbandwidth/LowBandwidthLanding";
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
@@ -81,6 +82,13 @@ function App() {
                   </MainLayout>
                 }
               />
+              <Route
+                path="/lowbandwidthlandwidth"
+                element={
+                  <BasicLayout>
+                    <LowBandwidthLanding />
+                  </BasicLayout>
+                }/>
               <Route
                 path="/dt"
                 element={
