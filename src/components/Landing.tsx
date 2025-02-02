@@ -246,8 +246,8 @@ const LandingPage = () => {
       );
     } else {
       alert("Geolocation is not supported by this browser.");
-    }
-  };
+    }
+  };
 
   return (
     <div
