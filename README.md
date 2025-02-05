@@ -38,7 +38,7 @@ Helps users navigate and fill online forms on websites with unfamiliar languages
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/GramSathi-AI.git
+   git clone https://github.com/UjaasChokeda/gramSathiAI.git
    cd GramSathi-AI
    ```
 2. Install dependencies:
@@ -56,8 +56,8 @@ The app will now be running at `http://localhost:3000`.
 
 ## 📌 Tech Stack
 - **Frontend**: React.js, Tailwind CSS
-- **Backend**: Node.js, Express.js
-- **AI**: OpenAI API / Google Translate API
+- **Backend**: Node.js
+- **AI**: Gemini
 - **Maps**: Google Maps API
 
 ---
