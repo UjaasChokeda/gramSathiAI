@@ -2,6 +2,8 @@
 
 ## Empowering Local Communities with AI-Driven Solutions
 
+Access Directly at: https://gram-sathi-ai.vercel.app/
+
 **GramSathi AI** is a powerful React-based application designed to bridge the gap between locals and tourists through AI-powered assistance. It offers multiple features, including a community marketplace, AI-driven translation, medical assistance, smart web navigation support, and an emergency SOS feature.
 
 ---
