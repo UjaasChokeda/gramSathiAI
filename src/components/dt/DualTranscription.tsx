@@ -244,7 +244,7 @@ WHEN ASKED FOR TRAINING REPORT, IMMEDIATELY USE THE generate_scam_training_repor
       <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg shadow-lg mb-6 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-3xl font-bold">ScamShield Trainer</h2>
+            <h2 className="text-3xl font-bold">PhishGuard360 AI Scam Caller</h2>
             <p className="text-red-100 mt-2">AI-Powered Fraud Prevention Training</p>
           </div>
           <div className="text-6xl">🛡️</div>
